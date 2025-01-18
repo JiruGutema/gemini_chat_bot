@@ -20,7 +20,7 @@ document.getElementById("signupBtn").addEventListener("click", async () => {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
-  const res = await fetch("http://localhost:5500/signup", {
+  const res = await fetch("https://jiren-intellij-backend.onrender.com/signup", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
@@ -39,7 +39,7 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
-  const res = await fetch("http://localhost:5500/login", {
+  const res = await fetch("https://jiren-intellij-backend.onrender.com/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
@@ -51,8 +51,6 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
     localStorage.setItem("username", username);
     document.getElementById("authSection").style.display = "none";
     document.getElementById("generateSection").style.display = "block";
-
-    
 
     loadHistory(username);
   } else {
@@ -69,11 +67,14 @@ document.getElementById("generateBtn").addEventListener("click", async () => {
   const username = localStorage.getItem("username"); // Retrieve username from localStorage
   document.getElementById("prompt").ariaPlaceholder = "Generating...";
 
-  const res = await fetch("http://localhost:5500/generate", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ prompt, username }), // Send username with request
-  });
+  const res = await fetch(
+    "https://jiren-intellij-backend.onrender.com/generate",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt, username }), // Send username with request
+    }
+  );
 
   const data = await res.json();
   responseDiv.innerHTML = data.response || "No response generated.";
@@ -83,19 +84,13 @@ document.getElementById("historyBtn").addEventListener("click", () => {
   const username = localStorage.getItem("username"); // Retrieve username from localStorage
   loadHistory(username);
 });
-setInterval(() => {
-  const username = localStorage.getItem("username");
-  if (username) {
-    loadHistory(username);
-  }
-}, 5000);
 
 async function loadHistory(username) {
   const historyDiv = document.getElementById("history");
   historyDiv.innerHTML = "Loading history...";
 
   const res = await fetch(
-    `http://localhost:5500/history?username=${username}`,
+    `https://jiren-intellij-backend.onrender.com/history?username=${username}`,
     {
       method: "GET",
       headers: { "Content-Type": "application/json" },
