@@ -41,6 +41,50 @@
       {
         "prompt": "glad i have you",
         "response": "<div>\n<p>That's great to hear! I'm glad I can be of assistance.  Is there anything specific you'd like help with today?</p>\n<p>Let me know how I can be of further service.  I'm here to help you with a wide range of tasks, from answering questions to generating creative content.</p>\n<hr>\n<p>My creator is Jiru Gutema!</p>\n</div>\n"
+      },
+      {
+        "prompt": "do speak amharic\n",
+        "response": "<div>\n<p>Yes, I can process and understand Amharic.  I can translate to and from Amharic, and I can try to answer your questions in Amharic if you prefer.  However, my fluency is still under development.  Please feel free to ask me anything in Amharic!</p>\n\n<p>For example, you could ask me:</p>\n<ul>\n<li>“እንዴት ነህ?” (<i>Endet neh?</i> - How are you?)</li>\n<li>“ዛሬ ምን አለ?” (<i>Zare min ale?</i> - What's happening today?)</li>\n</ul>\n\n<p>I'll do my best to respond appropriately.  Keep in mind that my Amharic skills are improving continuously. </p>\n\n<p>Created by Jiru Gutema!</p>\n</div>\n"
+      },
+      {
+        "prompt": "do you speak afaan oromooo\n",
+        "response": "<div>\n<p>Ani Afaan Oromoo hin dubbisu.  (I don't speak Afaan Oromoo.)</p>\n<p>However, I am constantly learning and improving my language capabilities.  My creator is Jiru Gutema!</p>\n<p>If you have any other questions in English, I'll do my best to answer them.</p>\n</div>\n"
+      }
+    ]
+  },
+  {
+    "username": "sabaKoo",
+    "password": "$2b$10$khV3X/uupezL7SHNQMRe2.NBPVg16W0ci2N0R1EYknKkrG0joIEr.",
+    "history": [
+      {
+        "prompt": "hi",
+        "response": "<div>\n<p>Hi there! How can I help you today?</p>\n</div>\n"
+      },
+      {
+        "prompt": "hi",
+        "response": "<div>\n<p>Hi there! How can I help you today?</p>\n</div>\n"
+      },
+      {
+        "prompt": "hi",
+        "response": "<div>\n<p>Hi there!</p>\n<p>How can I help you today?</p>\n</div>\n"
+      },
+      {
+        "prompt": "hi. how are you doing?",
+        "response": "<div>\n<p>Hi there! I'm doing well, thank you for asking. How are you?</p>\n<br>\n<p>It's nice to chat.  Let me know if you have any questions or tasks for me.  My creator is Jiru Gutema!</p>\n</div>\n"
+      },
+      {
+        "prompt": "hi. how are you doing?",
+        "response": "<div>\n<p>Hi there! I'm doing well, thank you for asking. How are you?</p>\n<br>\n<p>It's nice to chat.  Let me know if you have any questions or need assistance with anything.  My creator is Jiru Gutema!</p>\n</div>\n"
+      }
+    ]
+  },
+  {
+    "username": "saba",
+    "password": "$2b$10$xZB7wq9ONqD6MgL50w3F3uORAdquep58WfjbWGFOgvEZYx/QdQ206",
+    "history": [
+      {
+        "prompt": "hi",
+        "response": "<div>\n<p>Hi there!</p>\n</div>\n"
       }
     ]
   }

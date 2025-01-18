@@ -83,6 +83,12 @@ document.getElementById("historyBtn").addEventListener("click", () => {
   const username = localStorage.getItem("username"); // Retrieve username from localStorage
   loadHistory(username);
 });
+setInterval(() => {
+  const username = localStorage.getItem("username");
+  if (username) {
+    loadHistory(username);
+  }
+}, 5000);
 
 async function loadHistory(username) {
   const historyDiv = document.getElementById("history");
