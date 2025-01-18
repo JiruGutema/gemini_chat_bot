@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jiren-Intelli</title>
+    <link rel="stylesheet" href="./css.css" />
+  </head>
+  <body>
+    <div class="header"><h1>Jiren-Intelli</h1>
+    <button id="logout" onclick="logout()">logout</button></div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const username = localStorage.getItem("username");
+            if (username) {
+                document.querySelector(".welcome").innerHTML += `<span>Welcome, ${username}</span>`;
+            }
+            else {
+                document.getElementById("logout").textContent = "Login";
+            }
+        });
+    </script>
+    
+    <div class="container"><div class="welcome" style="text-align: center; margin: 10px;"></div>
+      <div id="authSection">
+        <input type="text" id="username" placeholder="Username" />
+        <input type="password" id="password" placeholder="Password" />
+        <div><button id="loginBtn">Login</button>
+        <button id="signupBtn">Sign Up</button></div>
+        
+      </div>
+      <div class="history" id="history">
+        <button id="historyBtn">Reload</button>
+      </div>
+      <div id="generateSection" style="display: block">
+        <textarea
+          id="prompt"
+          placeholder="Enter your prompt here..."
+        ></textarea>
+        <button id="generateBtn">Generate</button>
+      </div>
+    </div>
+    <div id="output" class="output"></ div>
+    <script src="./script.js"></script>
+    <script>
+        window.addEventListener("load", () => {
+          window.scrollTo(0, document.body.scrollHeight);
+        });
+        function logout() {
+          localStorage.removeItem("username");
+          location.reload();
+        }
+      </script>
+    </script>
+  </body>
+</html>

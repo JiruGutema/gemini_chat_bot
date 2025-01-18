@@ -1,0 +1,281 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(90deg, #282c34, #1e1e2f);
+  margin: 0;
+  margin-top: 50px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  color: #fff;
+  font-size: 1.5rem;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 900px;
+  width: 100%;
+}
+
+.header button {
+  height: 50px;
+  background-color: rgb(218, 63, 24);
+  width: 100px;
+  border-radius: 0;
+  color: white;
+  font-size: 1.5rem;
+}
+#output {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  display: none;
+}
+.container {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  max-width: 900px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  border: 1px solid #444;
+  scrollbar-width: thin;
+  scrollbar-color: #444 #282c34;
+}
+
+.container::-webkit-scrollbar {
+  width: 2px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: #444;
+}
+
+/* Auth Section */
+#authSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #444;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #2e2e3e;
+  color: #fff;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+#loginBtn {
+  background-color: #4caf50;
+  color: white;
+}
+
+#signupBtn {
+  background-color: #2196f3;
+  color: white;
+}
+
+/* Generate Section */
+#generateSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #444;
+  border-radius: 5px;
+  font-size: 14px;
+  resize: none;
+  height: 100px;
+  background-color: #2e2e3e;
+  color: #fff;
+}
+
+.response {
+  padding: 10px;
+  background-color: #2e2e3e;
+  border-radius: 5px;
+  margin-top: 10px;
+  min-height: 50px;
+  color: lightgrey;
+  font-family: monospace;
+}
+
+.history {
+  flex-grow: 1;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #1e1e2f;
+  border-radius: 5px;
+  overflow-y: auto;
+  border: 1px solid #444;
+  color: #fff;
+}
+
+/* Chat-like Styling */
+.history p {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 15px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+.prompt {
+  padding: 10px;
+  background-color: #4f4f68;
+  border-radius: 5px;
+  margin-top: 10px;
+  min-height: 50px;
+  color: lightgrey;
+  font-family: monospace;
+}
+body > h1 {
+  font-family: monospace;
+}
+.prompt strong {
+  border-left: #e96e09 5px solid;
+  color: #e96e09 !important;
+  display: inline-block;
+}
+.response strong {
+  border-right: #2bb409 5px solid;
+  color: #2bb409 !important;
+  display: inline-block;
+}
+.response a {
+  color: #099ab4;
+  text-decoration: underline;
+}
+.history strong {
+  display: block;
+  font-weight: bold;
+  color: #f1f1f1;
+  margin-bottom: 5px;
+}
+
+/* Chatbox Input Area */
+#generateSection textarea {
+  margin-top: auto;
+}
+
+#generateBtn {
+  background-color: #2e2e3e;
+  color: white;
+}
+
+#historyBtn {
+  background-color: #1e1e2f;
+  color: white;
+  margin-top: 10px;
+}
+#generateSection {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 10px;
+  background-color: #1e1e2f !important;
+  margin: 10px;
+  justify-content: center;
+}
+
+#generateSection textarea {
+  width: calc(900px - 150px);
+  height: 50px !important;
+  justify-content: center;
+  margin: auto;
+  margin-left: 10px;
+  align-items: center;
+}
+
+#generateSection button {
+  justify-content: center;
+  align-items: center;
+  height: 50px !important;
+  width: 100px;
+  margin-right: 10px;
+}
+.prompt {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: end;
+  padding-right: 20px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    height: 100vh;
+    width: 90%;
+  }
+  #generateSection {
+    flex-direction: column !important;
+    width: 90%;
+    margin: auto;
+  }
+  #authSection div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  #authSection button {
+    width: 100px;
+    margin: auto;
+  }
+  #username,
+  #password {
+    width: 90%;
+    margin: auto;
+    margin: 20px 0;
+  }
+  #generateSection textarea {
+    width: 90%;
+    margin: auto;
+    height: 50px;
+    padding: 20px;
+  }
+  #generateSection button {
+    width: 100%;
+    margin: auto;
+    font-size: 24px;
+    padding: 20 0;
+    background-color: rgb(68, 70, 69);
+  }
+  .header {
+    width: 90%;
+  }
+  .header h1 {
+    font-size: 34px;
+  }
+}
