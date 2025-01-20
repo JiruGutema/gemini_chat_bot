@@ -7,28 +7,38 @@
     <link rel="stylesheet" href="./css.css" />
   </head>
   <body>
-    <div class="header"><h1>Jiren-Intelli</h1>
-    <button id="logout" onclick="logout()">logout</button></div>
-    
+    <div class="header">
+      <img src="./assets/logo/jiren.png" alt="" />
+
+      <div class="left">
+        <div id="Account">Account</div>
+        <div id="Logout" onclick="logout()">logout</div>
+      </div>
+    </div>
+
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const username = localStorage.getItem("username");
-            if (username) {
-                document.querySelector(".welcome").innerHTML += `<span>Welcome, ${username}</span>`;
-            }
-            else {
-                document.getElementById("logout").textContent = "Login";
-            }
-        });
+      document.addEventListener("DOMContentLoaded", () => {
+        const username = localStorage.getItem("username");
+        if (username) {
+          document.querySelector(
+            ".welcome"
+          ).innerHTML += `<span>Welcome, ${username}</span>`;
+        } else {
+          document.getElementById("Logout").textContent = "Login";
+          document.getElementById("Account").style.display = "none";
+        }
+      });
     </script>
-    
-    <div class="container"><div class="welcome" style="text-align: center; margin: 10px;"></div>
+
+    <div class="container">
+      <div class="welcome" style="text-align: center; margin: 10px"></div>
       <div id="authSection">
         <input type="text" id="username" placeholder="Username" />
         <input type="password" id="password" placeholder="Password" />
-        <div><button id="loginBtn">Login</button>
-        <button id="signupBtn">Sign Up</button></div>
-        
+        <div>
+          <button id="loginBtn">Login</button>
+          <button id="signupBtn">Sign Up</button>
+        </div>
       </div>
       <div class="history" id="history">
         <button id="historyBtn">Reload</button>
@@ -41,17 +51,16 @@
         <button id="generateBtn">Generate</button>
       </div>
     </div>
-    <div id="output" class="output"></ div>
+    <div id="output" class="output"></div>
     <script src="./script.js"></script>
     <script>
-        window.addEventListener("load", () => {
-          window.scrollTo(0, document.body.scrollHeight);
-        });
-        function logout() {
-          localStorage.removeItem("username");
-          location.reload();
-        }
-      </script>
+      window.addEventListener("load", () => {
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+      function logout() {
+        localStorage.removeItem("username");
+        location.reload();
+      }
     </script>
   </body>
 </html>

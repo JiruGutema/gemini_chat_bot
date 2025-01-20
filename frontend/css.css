@@ -3,7 +3,7 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(90deg, #282c34, #1e1e2f);
   margin: 0;
-  margin-top: 50px;
+
   padding: 0;
   display: flex;
   justify-content: center;
@@ -11,7 +11,7 @@ body {
   align-items: center;
   height: 100vh;
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 .header {
   display: flex;
@@ -19,8 +19,16 @@ body {
   justify-content: space-between;
   max-width: 900px;
   width: 100%;
+  margin-bottom: 10px;
 }
-
+#Logout:hover {
+  background-color: tomato;
+  transition: ease-in-out 0.3s;
+}
+#Account:hover {
+  background-color: #abef1b;
+  transition: ease-in-out 0.3s;
+}
 .header button {
   height: 50px;
   background-color: rgb(218, 63, 24);
@@ -28,6 +36,24 @@ body {
   border-radius: 0;
   color: white;
   font-size: 1.5rem;
+}
+.header img {
+  width: 100px;
+  border: 1px solid #444;
+  padding: 10px 20px;
+}
+.header .left img {
+  width: 60px;
+  margin-bottom: 0;
+  background-color: #abef1b;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+}
+.header .left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 #output {
   position: absolute;
@@ -45,7 +71,7 @@ body {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: 80vh;
   border: 1px solid #444;
   scrollbar-width: thin;
   scrollbar-color: #444 #282c34;
@@ -72,7 +98,7 @@ input[type="password"] {
   padding: 10px;
   margin: 5px 0;
   border: 1px solid #444;
-  border-radius: 5px;
+
   font-size: 14px;
   background-color: #2e2e3e;
   color: #fff;
@@ -81,7 +107,7 @@ input[type="password"] {
 button {
   padding: 10px;
   border: none;
-  border-radius: 5px;
+
   font-size: 14px;
   cursor: pointer;
 
@@ -115,7 +141,7 @@ textarea {
   padding: 10px;
   margin: 5px 0;
   border: 1px solid #444;
-  border-radius: 5px;
+
   font-size: 14px;
   resize: none;
   height: 100px;
@@ -126,7 +152,7 @@ textarea {
 .response {
   padding: 10px;
   background-color: #2e2e3e;
-  border-radius: 5px;
+
   margin-top: 10px;
   min-height: 50px;
   color: lightgrey;
@@ -138,7 +164,7 @@ textarea {
   margin-bottom: 10px;
   padding: 10px;
   background-color: #1e1e2f;
-  border-radius: 5px;
+
   overflow-y: auto;
   border: 1px solid #444;
   color: #fff;
@@ -148,14 +174,14 @@ textarea {
 .history p {
   padding: 10px;
   margin: 10px 0;
-  border-radius: 15px;
+
   max-width: 80%;
   word-wrap: break-word;
 }
 .prompt {
   padding: 10px;
   background-color: #4f4f68;
-  border-radius: 5px;
+
   margin-top: 10px;
   min-height: 50px;
   color: lightgrey;
@@ -226,12 +252,17 @@ body > h1 {
   width: 100px;
   margin-right: 10px;
 }
+
 .prompt {
   display: flex;
   flex-direction: column;
   gap: 10px;
   text-align: end;
   padding-right: 20px;
+}
+.left > div {
+  border: 1px solid #444;
+  padding: 10px 20px;
 }
 
 @media (max-width: 900px) {
