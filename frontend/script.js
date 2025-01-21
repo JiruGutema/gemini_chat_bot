@@ -38,7 +38,7 @@ const button = document.getElementById("generateBtn");
 inputField.addEventListener("keydown", function (event) {
   if (event.keyCode === 13) {
     event.preventDefault();
-    button.focus();
+    button.click();
   }
 });
 
@@ -155,7 +155,7 @@ async function loadHistory(username) {
     historyDiv.innerHTML = data.history
       .map(
         (item) => `
-        
+        ${console.log(item.response)}
          <div class="prompt"> <strong>${localStorage.getItem(
            "username"
          )}</strong> ${item.prompt}</div>
