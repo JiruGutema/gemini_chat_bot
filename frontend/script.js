@@ -113,7 +113,10 @@ function scrollToBottom() {
   scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
 }
 document.getElementById("generateBtn").addEventListener("click", async () => {
-  const prompt = document.getElementById("prompt").value;
+  const prompt =
+    "For any code snippets, please use <pre> and <code> to inclose the given code part." +
+    document.getElementById("prompt").value;
+
   const username = localStorage.getItem("username");
   const historyDiv = document.getElementById("history");
   historyDiv.scrollTop = historyDiv.scrollHeight; // Retrieve username from localStorage

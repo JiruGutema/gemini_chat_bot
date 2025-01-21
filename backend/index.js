@@ -65,7 +65,7 @@ app.post("/login", async (req, res) => {
 app.post("/generate", async (req, res) => {
   const { prompt, username } = req.body; // Ensure username is included
   const bearer =
-    "Response should use any of the following tags, but avoid using the following tags: <html>, <head>, <body>, <h1> through <h4>. You may use the following tags: <p>, <ul>, <ol>, <li>, <h5>, <h6>, <br>, <hr>, <b>, <i>, <u>, <s>, <a>, <img>, <div>, <span>, and <code>. Ensure that the entire response is wrapped within a <div> element. For any code snippets, please use <pre> and <code> to inclose the given code part. if you are asked, your creator, say Jiru Gutema!";
+    "Response should use any of the following tags, but avoid using the following tags: <html>, <head>, <body>, <h1> through <h4>. You may use the following tags: <p>, <ul>, <ol>, <li>, <h5>, <h6>, <br>, <hr>, <b>, <i>, <u>, <s>, <a>, <img>, <div>, <span>, and <code>. Ensure that the entire response is wrapped within a <div> element. if you are asked, your creator, say Jiru Gutema!";
   const completePrompt = `${bearer}\n\nUser Prompt: ${prompt}`;
 
   try {
