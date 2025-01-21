@@ -22,11 +22,39 @@ Account.addEventListener("click", () => {
     welcomeDiv.style.padding = "20px";
     welcomeDiv.style.border = "2px solid #fff";
 
-    welcomeDiv.style.backgroundColor = "rgba(189, 189, 189, 0.8)";
+    welcomeDiv.style.backgroundColor = "#1E1E2F";
     welcomeDiv.style.boxShadow = "0 4px 8px rgba(223, 31, 31, 0.1)";
     // welcomeDiv.style.backdropFilter = "blur(10px)";
-    welcomeDiv.innerHTML = `<h1 style="font-family: 'Arial', sans-serif; color: #333;">Welcome to your account <br /> ${username}</h1>`;
+    welcomeDiv.innerHTML = `
+      <p style="font-family: 'Arial', sans-serif; color: white;">Welcome to your account <br /> ${username}</p>
+      <button id="Logout" style="margin-top: 10px; padding: 10px; border: 1px solid gray; background-color: #202130; color: white;cursor: pointer;" onclick="logout()">Logout</button>
+      <button id="clearHistoryBtn" style="margin-top: 10px; padding: 10px; background-color: #202130; color: white; border: 1px solid gray; cursor: pointer;">Clear History</button>
+    `;
     document.body.appendChild(welcomeDiv);
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("username");
+      location.reload();
+    });
+
+    document
+      .getElementById("clearHistoryBtn")
+      .addEventListener("click", async () => {
+        const res = await fetch(
+          `https://jiren-intellij-backend.onrender.com/clearHistory?username=${username}`,
+          {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+
+        if (res.ok) {
+          alert("History cleared successfully.");
+          loadHistory(username);
+        } else {
+          alert("Error clearing history.");
+        }
+      });
   }
 });
 // Function to scroll to the bottom
@@ -98,7 +126,9 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
     localStorage.setItem("username", username);
     document.getElementById("authSection").style.display = "none";
     document.getElementById("generateSection").style.display = "block";
-    loadHistory(username);
+    setTimeout(() => {
+      loadHistory(username);
+    }, 2000);
   } else {
     output.textContent = data.error;
     output.style.display = "block";
@@ -113,15 +143,59 @@ function scrollToBottom() {
   scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
 }
 document.getElementById("generateBtn").addEventListener("click", async () => {
-  const prompt =
-    "For any code snippets, please use <pre> and <code> to inclose the given code part." +
-    document.getElementById("prompt").value;
+  const prePrompt = document.getElementById("prompt").value;
+  const instruction =
+    "For any code snippets, please use <pre> and <code> to inclose the given code part.";
+  if (prePrompt === "") {
+    // Create a pop-up notification
+    const notification = document.createElement("div");
+    notification.style.position = "fixed";
+    notification.style.bottom = "20px";
+    notification.style.right = "20px";
+    notification.style.padding = "10px 20px";
+    notification.style.backgroundColor = "#1E1E2F";
+    notification.style.color = "red";
+    notification.style.borderRadius = "5px";
+    notification.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
+    notification.style.zIndex = "1000";
+    notification.textContent = "Please enter a prompt";
+
+    document.body.appendChild(notification);
+
+    // Remove the notification after 3 seconds
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
+    return;
+  }
+  // Create a pop-up notification
+  const notification = document.createElement("div");
+  notification.style.position = "fixed";
+  notification.style.bottom = "20px";
+  notification.style.right = "20px";
+  notification.style.padding = "10px 20px";
+  notification.style.backgroundColor = "#1E1E2F";
+  notification.style.color = "white";
+  notification.style.borderRadius = "5px";
+  notification.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
+  notification.style.zIndex = "1000";
+  notification.textContent = "Your request is being processed...";
+
+  document.body.appendChild(notification);
+
+  // Remove the notification after 3 seconds
+  setTimeout(() => {
+    notification.remove();
+  }, 3000);
+
+  prompt = instruction + prePrompt;
 
   const username = localStorage.getItem("username");
   const historyDiv = document.getElementById("history");
   historyDiv.scrollTop = historyDiv.scrollHeight; // Retrieve username from localStorage
-  // Define responseDiv
-  document.getElementById("prompt").placeholder = "Waiting for response...";
+  const inputField = document.getElementById("prompt");
+  inputField.value = "";
+  inputField.placeholder = "Waiting...";
 
   const res = await fetch(
     "https://jiren-intellij-backend.onrender.com/generate",
@@ -131,9 +205,9 @@ document.getElementById("generateBtn").addEventListener("click", async () => {
       body: JSON.stringify({ prompt, username }), // Send username with request
     }
   );
-
-  const data = await res.json();
   loadHistory(username);
+  inputField.placeholder = "Type something here...";
+  const data = await res.json();
 });
 
 document.getElementById("historyBtn").addEventListener("click", () => {
