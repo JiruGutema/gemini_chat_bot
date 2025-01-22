@@ -7,50 +7,12 @@
   {
     "username": "name",
     "password": "$2b$10$jnqpE1O.Ymok8zSNrBuF7OiRCO.tph.qr1dmIDuAdZvBUeU.1fUS.",
-    "history": [
-      {
-        "prompt": "what is elon musk",
-        "response": "<div>\n<p>Elon Musk is a multifaceted entrepreneur, investor, and innovator known for his ambitious and often controversial projects.  He's become a prominent figure in several industries, leading companies that are pushing technological boundaries.</p>\n\n<ul>\n<li><b>Space Exploration:</b>  Musk is the founder, CEO, and Chief Engineer of SpaceX, a company dedicated to the development of reusable rockets and the eventual colonization of Mars.  This venture aims to make space travel more affordable and accessible.</li>\n<li><b>Electric Vehicles:</b> As CEO of Tesla, Inc., Musk spearheaded the mass production and popularization of electric vehicles (EVs).  Tesla's innovations in battery technology and autonomous driving have significantly impacted the automotive industry.</li>\n<li><b>Other Ventures:</b>  He is also involved in numerous other companies and projects, including Neuralink (developing brain-computer interfaces), The Boring Company (developing tunnel-boring technology for transportation), and Starlink (building a satellite internet constellation).</li>\n</ul>\n\n<p>His leadership style is often described as demanding and driven, with a strong focus on innovation and long-term vision.  He frequently uses social media to communicate directly with the public, often leading to both praise and criticism. His impact on technology and society is undeniable, but continues to be a subject of ongoing debate.</p>\n\n<hr>\n\n<p>Here are some key aspects to consider when understanding Elon Musk:</p>\n\n<ol>\n<li><b>Visionary:</b> Musk possesses a remarkable ability to envision futuristic technologies and translate those visions into reality.</li>\n<li><b>Risk-taker:</b> He consistently pursues ambitious projects with high risks and potential for significant rewards.</li>\n<li><b>Controversial:</b> His public persona and business practices have generated both intense support and considerable controversy.</li>\n</ol>\n\n<p>To learn more, you can visit the websites of his various companies: <a href=\"https://www.spacex.com\">SpaceX</a>, <a href=\"https://www.tesla.com\">Tesla</a>, <a href=\"https://www.neuralink.com\">Neuralink</a>, and <a href=\"https://www.boringcompany.com\">The Boring Company</a>.</p>\n\n<p><code>#elonmusk #tesla #spacex #entrepreneur #innovation</code></p>\n</div>\n"
-      },
-      {
-        "prompt": "what is space x",
-        "response": "<div>\n<p>SpaceX is a private space exploration company founded by Elon Musk in 2002. Its primary goals are to reduce space transportation costs and enable the colonization of Mars.</p>\n\n<p>Here's a breakdown of what SpaceX does:</p>\n\n<ul>\n<li><b>Rocket Manufacturing and Launch Services:</b> SpaceX designs, manufactures, and launches its own rockets, most notably the Falcon 9 and Falcon Heavy, significantly lowering the cost of access to space compared to government agencies.</li>\n<li><b>Satellite Deployment:</b> They deploy numerous satellites for various purposes, including communication, Earth observation, and scientific research.</li>\n<li><b>Spacecraft Development:</b> SpaceX is developing spacecraft for human spaceflight, including the Dragon spacecraft, which has already transported astronauts to the International Space Station (ISS).</li>\n<li><b>Starship Development:</b>  This is SpaceX's ambitious project to create a fully reusable transportation system for transporting large numbers of people and cargo to Mars and other destinations.</li>\n<li><b>Space Exploration:</b>  Their long-term vision involves making humanity a multi-planetary species, with Mars as a primary target.</li>\n</ul>\n\n<p>Some key technologies and achievements include:</p>\n\n<ul>\n<li><b>Reusable Rockets:</b> SpaceX pioneered the reusable rocket technology, dramatically reducing launch costs.</li>\n<li><b>Cargo and Crew Missions to the ISS:</b> SpaceX is a key partner with NASA for transporting cargo and astronauts to the ISS.</li>\n<li><b>Starlink:</b>  A massive satellite constellation providing global internet coverage.</li>\n</ul>\n\n<hr>\n\n<p>You can learn more by visiting their website: <a href=\"https://www.spacex.com/\">https://www.spacex.com/</a></p>\n\n<p>Here's a simple code example illustrating a rocket launch (Python - this is just illustrative, not a real simulation):</p>\n\n<pre><code>\nprint(\"Rocket launching...\")\nfor i in range(10):\n    print(f\"Countdown: {10 - i}\")\nprint(\"Liftoff!\")\n</code></pre>\n\n</div>\n"
-      },
-      {
-        "prompt": "do you speak agaan oromoo",
-        "response": "<div>\n<p>No, I do not \"speak\" Afaan Oromo in the way a human does. I am a large language model, and I process and generate text based on patterns and information I have been trained on.  I can translate to and from Afaan Oromo, and I can try to answer your questions in Afaan Oromo if you phrase them that way, but I don't have the same understanding or fluency as a native speaker.</p>\n\n<p>To get the best results, please ask your questions in English or another language I am proficient in.  I can then provide you with a translation or answer in Afaan Oromo if requested.  For example, you could ask: \"Translate 'Hello, how are you?' into Afaan Oromo.\"</p>\n\n<p>Here are some things I <i>can</i> do with Afaan Oromo:</p>\n<ul>\n<li>Translate text to and from Afaan Oromo.</li>\n<li>Attempt to answer your questions in Afaan Oromo (though accuracy may vary).</li>\n<li>Provide information about Afaan Oromo grammar and vocabulary (to the extent of my knowledge).</li>\n</ul>\n\n<p>If you have a specific request, please let me know.</p>\n</div>\n"
-      },
-      {
-        "prompt": "hello gemini\n",
-        "response": "<div>\n<p>Hello there!</p>\n\n<p>It seems you said \"hello gemini\".  Is there anything I can help you with today?</p>\n\n<p>Here are some things I can do:</p>\n<ul>\n<li>Answer your questions</li>\n<li>Generate creative text formats (poems, code, scripts, musical pieces, email, letters, etc.)</li>\n<li>Translate languages</li>\n<li>Summarize factual topics or create stories</li>\n</ul>\n\n<p>Just let me know what you'd like me to do.  For example, you could ask:</p>\n<ul>\n<li>\"Write a short poem about a cat\"</li>\n<li>\"Translate 'Hello, world!' into Spanish\"</li>\n<li>\"Summarize the plot of Hamlet\"</li>\n</ul>\n\n<hr>\n\n<p>Here's a small code snippet demonstrating a simple Hello World program in Python:</p>\n<div>\n<code>print(\"Hello, world!\")</code>\n</div>\n\n</div>\n"
-      },
-      {
-        "prompt": "who created you",
-        "response": "<div>\n<p>I was created by Jiru Gutema!</p>\n</div>\n"
-      }
-    ]
+    "history": []
   },
   {
     "username": "Jiru",
     "password": "$2b$10$JPCrm9h8NyoBYGcoOPDT.u/cNJuivabJE7bF4/KFimmehxp2Jra9y",
-    "history": [
-      {
-        "prompt": "hi, what are you soinf",
-        "response": "<div>\n<p>Hi there!  It seems you have a typo in your question. I believe you meant to ask \"what are you <i>doing</i>?\"</p>\n\n<p>As a large language model, I'm currently processing your request and formulating a response.  My tasks include:</p>\n\n<ul>\n<li>Understanding your input</li>\n<li>Accessing and processing relevant information from my training data</li>\n<li>Generating a coherent and informative response</li>\n</ul>\n\n<p>Essentially, I'm always learning and improving my ability to understand and respond to a wide range of prompts and questions.  Is there anything specific you'd like to know or ask me?</p>\n<br>\n<p>My creator is Jiru Gutema!</p>\n</div>\n"
-      },
-      {
-        "prompt": "glad i have you",
-        "response": "<div>\n<p>That's great to hear! I'm glad I can be of assistance.  Is there anything specific you'd like help with today?</p>\n<p>Let me know how I can be of further service.  I'm here to help you with a wide range of tasks, from answering questions to generating creative content.</p>\n<hr>\n<p>My creator is Jiru Gutema!</p>\n</div>\n"
-      },
-      {
-        "prompt": "do speak amharic\n",
-        "response": "<div>\n<p>Yes, I can process and understand Amharic.  I can translate to and from Amharic, and I can try to answer your questions in Amharic if you prefer.  However, my fluency is still under development.  Please feel free to ask me anything in Amharic!</p>\n\n<p>For example, you could ask me:</p>\n<ul>\n<li>“እንዴት ነህ?” (<i>Endet neh?</i> - How are you?)</li>\n<li>“ዛሬ ምን አለ?” (<i>Zare min ale?</i> - What's happening today?)</li>\n</ul>\n\n<p>I'll do my best to respond appropriately.  Keep in mind that my Amharic skills are improving continuously. </p>\n\n<p>Created by Jiru Gutema!</p>\n</div>\n"
-      },
-      {
-        "prompt": "do you speak afaan oromooo\n",
-        "response": "<div>\n<p>Ani Afaan Oromoo hin dubbisu.  (I don't speak Afaan Oromoo.)</p>\n<p>However, I am constantly learning and improving my language capabilities.  My creator is Jiru Gutema!</p>\n<p>If you have any other questions in English, I'll do my best to answer them.</p>\n</div>\n"
-      }
-    ]
+    "history": []
   },
   {
     "username": "sabaKoo",

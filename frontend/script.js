@@ -5,58 +5,31 @@ const Generate = document.getElementById("generateSection");
 const History = document.getElementById("history");
 const Auth = document.getElementById("authSection");
 const username = localStorage.getItem("username");
+const welcomeDiv = document.getElementById("welcomeDiv");
+const usernameSpan = document.getElementById("usernameSpan");
 
-let welcomeDiv;
+// Set username text
+usernameSpan.textContent = username;
 
 Account.addEventListener("click", () => {
-  if (welcomeDiv) {
-    welcomeDiv.remove();
-    welcomeDiv = null;
+  if (welcomeDiv.style.display === "none" || welcomeDiv.style.display === "") {
+    welcomeDiv.style.display = "block";
   } else {
-    welcomeDiv = document.createElement("div");
-    welcomeDiv.style.position = "absolute";
-    welcomeDiv.style.top = "50%";
-    welcomeDiv.style.left = "50%";
-    welcomeDiv.style.transform = "translate(-50%, -50%)";
-    welcomeDiv.style.textAlign = "center";
-    welcomeDiv.style.padding = "20px";
-    welcomeDiv.style.border = "2px solid #fff";
-
-    welcomeDiv.style.backgroundColor = "#1E1E2F";
-    welcomeDiv.style.boxShadow = "0 4px 8px rgba(223, 31, 31, 0.1)";
-    // welcomeDiv.style.backdropFilter = "blur(10px)";
-    welcomeDiv.innerHTML = `
-      <p style="font-family: 'Arial', sans-serif; color: white;">Welcome to your account <br /> ${username}</p>
-      <button id="Logout" style="margin-top: 10px; padding: 10px; border: 1px solid gray; background-color: #202130; color: white;cursor: pointer;" onclick="logout()">Logout</button>
-      <button id="clearHistoryBtn" style="margin-top: 10px; padding: 10px; background-color: #202130; color: white; border: 1px solid gray; cursor: pointer;">Clear History</button>
-    `;
-    document.body.appendChild(welcomeDiv);
-
-    document.getElementById("logoutBtn").addEventListener("click", () => {
-      localStorage.removeItem("username");
-      location.reload();
-    });
-
-    document
-      .getElementById("clearHistoryBtn")
-      .addEventListener("click", async () => {
-        const res = await fetch(
-          `https://jiren-intellij-backend.onrender.com/clearHistory?username=${username}`,
-          {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-
-        if (res.ok) {
-          alert("History cleared successfully.");
-          loadHistory(username);
-        } else {
-          alert("Error clearing history.");
-        }
-      });
+    welcomeDiv.style.display = "none";
   }
 });
+
+// Logout functionality
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  localStorage.removeItem("username");
+  location.reload();
+});
+
+// Clear history functionality
+document.getElementById("clearHistoryBtn").addEventListener("click", () => {
+  console.log("History cleared!"); // Add specific history-clearing logic here
+});
+
 // Function to scroll to the bottom
 function scrollToBottom() {
   scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
@@ -75,7 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (username) {
     document.getElementById("authSection").style.display = "none";
     document.getElementById("generateSection").style.display = "block";
-    loadHistory(username);
+    setTimeout(() => {
+      loadHistory(username);
+    }, 2000);
   } else {
     document.getElementById("authSection").style.display = "block";
     document
@@ -92,14 +67,11 @@ document.getElementById("signupBtn").addEventListener("click", async () => {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
-  const res = await fetch(
-    "https://jiren-intellij-backend.onrender.com/signup",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    }
-  );
+  const res = await fetch("http://localhost:5500/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  });
 
   const data = await res.json();
 
@@ -114,7 +86,7 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
-  const res = await fetch("https://jiren-intellij-backend.onrender.com/login", {
+  const res = await fetch("http://localhost:5500/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
@@ -143,10 +115,9 @@ function scrollToBottom() {
   scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
 }
 document.getElementById("generateBtn").addEventListener("click", async () => {
-  const prePrompt = document.getElementById("prompt").value;
-  const instruction =
-    "For any code snippets, please use <pre> and <code> to inclose the given code part.";
-  if (prePrompt === "") {
+  const prompt = document.getElementById("prompt").value;
+
+  if (prompt === "") {
     // Create a pop-up notification
     const notification = document.createElement("div");
     notification.style.position = "fixed";
@@ -188,8 +159,6 @@ document.getElementById("generateBtn").addEventListener("click", async () => {
     notification.remove();
   }, 3000);
 
-  prompt = instruction + prePrompt;
-
   const username = localStorage.getItem("username");
   const historyDiv = document.getElementById("history");
   historyDiv.scrollTop = historyDiv.scrollHeight; // Retrieve username from localStorage
@@ -197,42 +166,54 @@ document.getElementById("generateBtn").addEventListener("click", async () => {
   inputField.value = "";
   inputField.placeholder = "Waiting...";
 
-  const res = await fetch(
-    "https://jiren-intellij-backend.onrender.com/generate",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt, username }), // Send username with request
-    }
-  );
-  loadHistory(username);
+  const res = await fetch("http://localhost:5500/generate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt, username }), // Send username with request
+  });
+  setTimeout(() => {
+    loadHistory(username);
+  }, 1000);
   inputField.placeholder = "Type something here...";
   const data = await res.json();
-});
-
-document.getElementById("historyBtn").addEventListener("click", () => {
-  const username = localStorage.getItem("username"); // Retrieve username from localStorage
-  loadHistory(username);
 });
 
 async function loadHistory(username) {
   const historyDiv = document.getElementById("history");
   historyDiv.innerHTML = "Loading history...";
 
-  const res = await fetch(
-    `https://jiren-intellij-backend.onrender.com/history?username=${username}`,
-    {
+  let res;
+  try {
+    res = await fetch(`http://localhost:5500/history?username=${username}`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
-    }
-  );
+    });
+  } catch (error) {
+    historyDiv.innerHTML = "Error fetching history.";
+    console.error("Fetch error:", error);
+    return;
+  }
 
-  const data = await res.json();
+  let data;
+  try {
+    data = await res.json();
+  } catch (error) {
+    historyDiv.innerHTML = "Error parsing history data.";
+    console.error("JSON parse error:", error);
+    return;
+  }
   if (res.ok) {
+    if (!Array.isArray(data.history) || data.history.length === 0) {
+      historyDiv.innerHTML = "No history available.";
+      historyDiv.style.textAlign = "center";
+      historyDiv.style.marginTop = "20px";
+      historyDiv.style.color = "red";
+      return;
+    }
     historyDiv.innerHTML = data.history
       .map(
         (item) => `
-        ${console.log(item.response)}
+  
          <div class="prompt"> <strong>${localStorage.getItem(
            "username"
          )}</strong> ${item.prompt}</div>
@@ -249,3 +230,26 @@ async function loadHistory(username) {
     historyDiv.innerHTML = "Error loading history.";
   }
 }
+
+document
+  .getElementById("clearHistoryBtn")
+  .addEventListener("click", async () => {
+    const res = await fetch(
+      `http://localhost:5500/history?username=${username}`,
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+
+    if (res.ok) {
+      loadHistory(username);
+      notification.style.display = "block";
+      notification.textContent = "History cleared!";
+      setTimeout(() => {
+        notification.style.display = "none";
+      }, 3000);
+    } else {
+      alert("Error clearing history.");
+    }
+  });
