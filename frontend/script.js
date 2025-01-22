@@ -219,6 +219,9 @@ async function loadHistory(username) {
       historyDiv.style.color = "red";
       return;
     }
+    historyDiv.style.textAlign = "left";
+    historyDiv.style.marginTop = "0";
+    historyDiv.style.color = "white";
     historyDiv.innerHTML = data.history
       .map(
         (item) => `
