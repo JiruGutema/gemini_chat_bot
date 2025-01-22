@@ -67,11 +67,14 @@ document.getElementById("signupBtn").addEventListener("click", async () => {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
-  const res = await fetch("http://localhost:5500/signup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password }),
-  });
+  const res = await fetch(
+    "https://jiren-intellij-backend.onrender.com/signup",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    }
+  );
 
   const data = await res.json();
 
@@ -86,7 +89,7 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
-  const res = await fetch("http://localhost:5500/login", {
+  const res = await fetch("https://jiren-intellij-backend.onrender.com/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
@@ -166,11 +169,14 @@ document.getElementById("generateBtn").addEventListener("click", async () => {
   inputField.value = "";
   inputField.placeholder = "Waiting...";
 
-  const res = await fetch("http://localhost:5500/generate", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ prompt, username }), // Send username with request
-  });
+  const res = await fetch(
+    "https://jiren-intellij-backend.onrender.com/generate",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt, username }), // Send username with request
+    }
+  );
   setTimeout(() => {
     loadHistory(username);
   }, 1000);
@@ -184,10 +190,13 @@ async function loadHistory(username) {
 
   let res;
   try {
-    res = await fetch(`http://localhost:5500/history?username=${username}`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    });
+    res = await fetch(
+      `https://jiren-intellij-backend.onrender.com/history?username=${username}`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   } catch (error) {
     historyDiv.innerHTML = "Error fetching history.";
     console.error("Fetch error:", error);
@@ -235,7 +244,7 @@ document
   .getElementById("clearHistoryBtn")
   .addEventListener("click", async () => {
     const res = await fetch(
-      `http://localhost:5500/history?username=${username}`,
+      `https://jiren-intellij-backend.onrender.com/history?username=${username}`,
       {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
