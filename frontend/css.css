@@ -1,8 +1,8 @@
 /* General Styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Times New Roman", Times, serif;
   /* background: linear-gradient(90deg, #a9bb0c, #e78505); */
-  background: linear-gradient(90deg, #282c34, #1e1e2f);
+  background: #0d1117;
   margin: 0;
 
   padding: 0;
@@ -12,7 +12,7 @@ body {
   align-items: center;
   height: 100vh;
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .header {
   display: flex;
@@ -46,7 +46,7 @@ body {
 .header .left img {
   width: 60px;
   margin-bottom: 0;
-  background-color: #abef1b;
+  background-color: #b2fb13;
   border-radius: 50%;
   padding: 5px;
   cursor: pointer;
@@ -61,7 +61,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #282c34;
+  background-color: #010409;
   color: white;
   padding: 20px;
   display: none;
@@ -76,14 +76,6 @@ body {
   border: 1px solid #444;
   scrollbar-width: thin;
   scrollbar-color: #444 #282c34;
-}
-
-.container::-webkit-scrollbar {
-  width: 2px;
-}
-
-.container::-webkit-scrollbar-thumb {
-  background-color: #444;
 }
 
 /* Auth Section */
@@ -101,7 +93,7 @@ input[type="password"] {
   border: 1px solid #444;
 
   font-size: 14px;
-  background-color: #2e2e3e;
+  background-color: #010409;
   color: #fff;
 }
 
@@ -120,7 +112,7 @@ button:hover {
 }
 
 #loginBtn {
-  background-color: #4caf50;
+  background-color: #b2fb13;
   color: white;
 }
 
@@ -146,29 +138,29 @@ textarea {
   font-size: 14px;
   resize: none;
   height: 100px;
-  background-color: #2e2e3e;
+  background-color: #010409;
   color: #fff;
 }
 
 .response {
   padding: 10px;
-  background-color: #2e2e3e;
-
+  background-color: #010409;
+  border: 1px solid #444;
   margin-top: 10px;
   min-height: 50px;
   color: lightgrey;
   font-family: monospace;
 }
-
 .history {
   flex-grow: 1;
   margin-bottom: 10px;
   padding: 10px;
-  background-color: #1e1e2f;
-
+  background-color: #010409;
   overflow-y: auto;
   border: 1px solid #444;
   color: #fff;
+  scrollbar-width: thin;
+  scrollbar-color: #4f4f68 #1f1f30;
 }
 
 /* Chat-like Styling */
@@ -181,7 +173,7 @@ textarea {
 }
 .prompt {
   padding: 10px;
-  background-color: #4f4f68;
+  background-color: #010409;
 
   margin-top: 10px;
   min-height: 50px;
@@ -192,13 +184,13 @@ body > h1 {
   font-family: monospace;
 }
 .prompt strong {
-  border-left: #e96e09 5px solid;
-  color: #e96e09 !important;
+  border-left: #b2fb13 5px solid;
+  color: #b2fb13 !important;
   display: inline-block;
 }
 .response strong {
-  border-right: #2bb409 5px solid;
-  color: #2bb409 !important;
+  border-right: #b2fb13 5px solid;
+  color: #b2fb13 !important;
   display: inline-block;
 }
 .response a {
@@ -220,6 +212,7 @@ body > h1 {
 #generateBtn {
   background-color: #2e2e3e;
   color: white;
+  padding: 20px;
 }
 
 #historyBtn {
@@ -232,7 +225,6 @@ body > h1 {
   flex-direction: row !important;
   align-items: center;
   gap: 10px;
-  background-color: #1e1e2f !important;
   margin: 10px;
   justify-content: center;
 }
@@ -249,15 +241,18 @@ body > h1 {
 #generateSection button {
   justify-content: center;
   align-items: center;
-  height: 50px !important;
-  background-color: #1bad08;
-  width: 100px;
+
+  border: solid 1px #444;
+  background-color: #010409;
+  width: 150px;
+  height: 100%;
   margin-right: 10px;
 }
 
 .prompt {
   display: flex;
   flex-direction: column;
+  border: solid 1px #444;
   gap: 10px;
   text-align: end;
   padding-right: 20px;
@@ -303,7 +298,7 @@ body > h1 {
   color: white;
 }
 pre {
-  background-color: #1e1e2f;
+  background-color: #0d1117;
   color: white;
   text-wrap: wrap;
   padding: 10px;

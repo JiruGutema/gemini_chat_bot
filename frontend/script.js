@@ -226,13 +226,9 @@ async function loadHistory(username) {
       .map(
         (item) => `
   
-         <div class="prompt"> <strong>${localStorage.getItem(
-           "username"
-         )}</strong> ${item.prompt}</div>
+         <div class="prompt"> <strong>You</strong> ${item.prompt}</div>
           <br />
-        <div class="response">  <strong>Jiren-Intelli</strong> ${
-          item.response
-        } </div>
+        <div class="response">  <strong>Jiren-Intelli</strong> ${item.response} </div>
         
       `
       )
