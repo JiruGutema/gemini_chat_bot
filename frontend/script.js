@@ -2,6 +2,7 @@ const scrollableDiv = document.getElementById("history");
 const Account = document.getElementById("Account");
 const Logout = document.getElementById("Logout");
 const Generate = document.getElementById("generateSection");
+
 const History = document.getElementById("history");
 const Auth = document.getElementById("authSection");
 const welcomeDiv = document.getElementById("welcomeDiv");
@@ -85,7 +86,7 @@ document.getElementById("signupBtn").addEventListener("click", async () => {
   const email = document.getElementById("signupEmail").value;
   const password = document.getElementById("signupPassword").value;
 
-  const res = await fetch("http://localhost:5500/signup", {
+  const res = await fetch(`https://gemini-chat-bot-1-scae.onrender.com/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, email, password }),
@@ -106,7 +107,7 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
   const username = document.getElementById("signupUsername").value;
   const password = document.getElementById("password").value;
 
-  const res = await fetch("http://localhost:5500/login", {
+  const res = await fetch(`https://gemini-chat-bot-1-scae.onrender.com/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
@@ -159,7 +160,7 @@ document.getElementById("generateBtn").addEventListener("click", async () => {
   inputField.placeholder = "Waiting...";
 
   try {
-    const res = await fetch("http://localhost:5500/generate", {
+    const res = await fetch(`https://gemini-chat-bot-1-scae.onrender.com/generate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -201,7 +202,7 @@ async function loadHistory(username) {
   historyDiv.innerHTML = "Loading history...";
 
   try {
-    const res = await fetch("http://localhost:5500/history", {
+    const res = await fetch(`https://gemini-chat-bot-1-scae.onrender.com/history`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -236,13 +237,14 @@ async function loadHistory(username) {
 // Clear history
 document.getElementById("clearHistoryBtn").addEventListener("click", async () => {
   try {
-    const res = await fetch("http://localhost:5500/history", {
+    const res = await fetch(`https://gemini-chat-bot-1-scae.onrender.com/history`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     });
+
   document.getElementById("welcomeDiv").style.display = "none";
     if (res.ok) {
   
@@ -255,3 +257,4 @@ document.getElementById("clearHistoryBtn").addEventListener("click", async () =>
     console.error(error);
   }
 });
+
