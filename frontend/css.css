@@ -74,30 +74,16 @@ body {
   padding: 20px;
   display: flex;
   flex-direction: column;
+
   height: 80vh;
   border: 1px solid #444;
   scrollbar-width: thin;
   scrollbar-color: #444 #282c34;
 }
 
-/* Auth Section */
-#authSection {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
 
-input[type="text"],
-input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  border: 1px solid #444;
 
-  font-size: 14px;
-  background-color: #010409;
-  color: #fff;
-}
+
 
 button {
   padding: 10px;
@@ -156,8 +142,8 @@ textarea {
   flex-grow: 1;
   margin-bottom: 10px;
   padding: 10px;
-  overflow-y: auto;
-
+  overflow-y: scroll !important;
+height: 85%;
   color: #fff;
   scrollbar-width: thin;
   scrollbar-color: #4f4f68 #1f1f30;
@@ -272,15 +258,7 @@ body > h1 {
   margin-bottom: 100px !important;
 }
 
-#authSection div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-#authSection button {
-  width: 100px;
-  margin: auto;
-}
+
 #username,
 #password {
   width: 90%;
@@ -326,6 +304,98 @@ background-color: transparent;
   color: white;
   cursor: pointer;
 }
+
+
+      #authSection  {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        opacity: 0.9;
+        border: 1px solid #444 !important;
+        background-color: #0D1117;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      #authSection .auth-intro {
+        text-align: center;
+        display: flex;
+        flex-direction: column !important;
+        margin-bottom: 20px;
+      }
+
+      #authSection .auth-intro h2 {
+        font-size: 24px;
+        color: white;
+        font-weight: 600;
+      }
+
+      #authSection .auth-intro p {
+        color: #777;
+        font-size: 16px;
+      }
+
+      #authSection .auth-form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #authSection .auth-form label {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 5px;
+      }
+
+      #authSection .auth-input {
+        padding: 10px;
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 15px;
+        width: 90%;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        outline: none;
+      }
+
+      #authSection .auth-input:focus {
+        border-color: #007bff;
+      }
+
+      #authSection .auth-buttons {
+        display: flex;
+        justify-content: center;
+      }
+
+      #authSection .auth-btn {
+        padding: 12px 20px;
+        background-color: #007bff !important;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #authSection .auth-btn:hover {
+        background-color: #0056b3 !important;
+      }
+
+      #authSection .auth-redirect {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 14px;
+      }
+
+      #authSection .auth-redirect a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      #authSection .auth-redirect a:hover {
+        text-decoration: underline;
+      }
+      
 @media (max-width: 900px) {
   .container {
     height: 100%;

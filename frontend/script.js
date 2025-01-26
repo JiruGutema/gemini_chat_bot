@@ -4,13 +4,25 @@ const Logout = document.getElementById("Logout");
 const Generate = document.getElementById("generateSection");
 const History = document.getElementById("history");
 const Auth = document.getElementById("authSection");
-const username = localStorage.getItem("username");
 const welcomeDiv = document.getElementById("welcomeDiv");
 const usernameSpan = document.getElementById("usernameSpan");
 
-// Set username text
-usernameSpan.textContent = username;
-document.getElementById("Account").setAttribute("src", "./assets/logo/profile.png")
+// Retrieve token from localStorage
+const token = localStorage.getItem("token");
+
+// Decode token to get user information
+function decodeToken(token) {
+  const payload = JSON.parse(atob(token.split(".")[1]));
+  return payload;
+}
+
+// If token exists, set user info
+if (token) {
+  const { username } = decodeToken(token);
+  usernameSpan.textContent = username;
+}
+
+document.getElementById("Account").setAttribute("src", "./assets/logo/profile.png");
 
 Account.addEventListener("click", () => {
   if (welcomeDiv.style.display === "none" || welcomeDiv.style.display === "") {
@@ -22,7 +34,7 @@ Account.addEventListener("click", () => {
 
 // Logout functionality
 document.getElementById("logoutBtn").addEventListener("click", () => {
-  localStorage.removeItem("username");
+  localStorage.removeItem("token");
   location.reload();
 });
 
@@ -35,6 +47,8 @@ document.getElementById("clearHistoryBtn").addEventListener("click", () => {
 function scrollToBottom() {
   scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
 }
+
+// Submit on Enter key press
 const inputField = document.getElementById("prompt");
 const button = document.getElementById("generateBtn");
 inputField.addEventListener("keydown", function (event) {
@@ -44,11 +58,13 @@ inputField.addEventListener("keydown", function (event) {
   }
 });
 
+// Handle page load
 document.addEventListener("DOMContentLoaded", () => {
-  const username = localStorage.getItem("username");
-  if (username) {
+  if (token) {
     document.getElementById("authSection").style.display = "none";
     document.getElementById("generateSection").style.display = "block";
+
+    const { username } = decodeToken(token);
     setTimeout(() => {
       loadHistory(username);
     }, 2000);
@@ -62,20 +78,18 @@ document.addEventListener("DOMContentLoaded", () => {
       .style.setProperty("display", "none", "important");
   }
 });
-const output = document.getElementById("output");
 
+// Signup functionality
 document.getElementById("signupBtn").addEventListener("click", async () => {
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
+  const username = document.getElementById("signupUsername").value;
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
 
-  const res = await fetch(
-    "https://jiren-intellij-backend.onrender.com/signup",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    }
-  );
+  const res = await fetch("http://localhost:5500/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, email, password }),
+  });
 
   const data = await res.json();
 
@@ -86,11 +100,13 @@ document.getElementById("signupBtn").addEventListener("click", async () => {
   }, 3000);
 });
 
+// Login functionality
 document.getElementById("loginBtn").addEventListener("click", async () => {
-  const username = document.getElementById("username").value;
+  const Account = document.getElementById("Account");
+  const username = document.getElementById("signupUsername").value;
   const password = document.getElementById("password").value;
 
-  const res = await fetch("https://jiren-intellij-backend.onrender.com/login", {
+  const res = await fetch("http://localhost:5500/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
@@ -98,10 +114,14 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
 
   const data = await res.json();
   if (res.ok) {
-    // Store username for session management
-    localStorage.setItem("username", username);
+    // Store token for session management
+    localStorage.setItem("token", data.token);
+    const { username } = decodeToken(data.token);
+
     document.getElementById("authSection").style.display = "none";
     document.getElementById("generateSection").style.display = "block";
+    Account.style.display = "block";  
+
     setTimeout(() => {
       loadHistory(username);
     }, 5000);
@@ -114,37 +134,15 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
   }
 });
 
-// Function to scroll to the bottom
-function scrollToBottom() {
-  scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
-}
+// Generate button functionality
 document.getElementById("generateBtn").addEventListener("click", async () => {
   const prompt = document.getElementById("prompt").value;
 
-  if (prompt === "") {
-    // Create a pop-up notification
-    const notification = document.createElement("div");
-    notification.style.position = "fixed";
-    notification.style.bottom = "20px";
-    notification.style.right = "20px";
-    notification.style.padding = "10px 20px";
-    notification.style.backgroundColor = "#1E1E2F";
-    notification.style.color = "red";
-    notification.style.borderRadius = "5px";
-    notification.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
-    notification.style.zIndex = "1000";
-    notification.textContent = "Please enter a prompt";
-
-    document.body.appendChild(notification);
-
-    // Remove the notification after 3 seconds
-    setTimeout(() => {
-      notification.remove();
-    }, 3000);
+  if (!prompt) {
+    alert("Please enter a prompt");
     return;
   }
 
-  const username = localStorage.getItem("username");
   const historyDiv = document.getElementById("history");
 
   // Add "Typing..." indicator
@@ -161,14 +159,14 @@ document.getElementById("generateBtn").addEventListener("click", async () => {
   inputField.placeholder = "Waiting...";
 
   try {
-    const res = await fetch(
-      "https://jiren-intellij-backend.onrender.com/generate",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt, username }),
-      }
-    );
+    const res = await fetch("http://localhost:5500/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ prompt }),
+    });
 
     const data = await res.json();
 
@@ -196,80 +194,64 @@ document.getElementById("generateBtn").addEventListener("click", async () => {
   }
 });
 
+// Load history
 async function loadHistory(username) {
+  Account.style.display = "block";
   const historyDiv = document.getElementById("history");
   historyDiv.innerHTML = "Loading history...";
 
-  let res;
   try {
-    res = await fetch(
-      `https://jiren-intellij-backend.onrender.com/history?username=${username}`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-  } catch (error) {
-    historyDiv.innerHTML = "Error fetching history.";
-    console.error("Fetch error:", error);
-    return;
-  }
+    const res = await fetch("http://localhost:5500/history", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-  let data;
-  try {
-    data = await res.json();
-  } catch (error) {
-    historyDiv.innerHTML = "Error parsing history data.";
-    console.error("JSON parse error:", error);
-    return;
-  }
-  if (res.ok) {
-    if (!Array.isArray(data.history) || data.history.length === 0) {
-      historyDiv.innerHTML = "No history available.";
-      historyDiv.style.textAlign = "center";
-      historyDiv.style.marginTop = "20px";
-      historyDiv.style.color = "red";
-      return;
-    }
-    historyDiv.style.textAlign = "left";
-    historyDiv.style.marginTop = "0";
-    historyDiv.style.color = "white";
-    historyDiv.innerHTML = data.history
-      .map(
-        (item) => `
-  
-         <div class="prompt"> <strong style="font-size: 24px">${username}</strong> ${item.prompt}</div>
+    const data = await res.json();
+    if (res.ok) {
+      historyDiv.innerHTML = data.history
+        .map(
+          (item) => `
+          <div class="prompt"><strong>${username}:</strong> ${item.prompt}</div>
           <br />
-        <div class="response">  <img src="./assets/logo/jiren.jpg" class="gptProfile" alt="Jiren" ${item.response} </div>
-        
-      `
-      )
-      .join("");
-    scrollToBottom();
-  } else {
+          <div class="response">
+            <a href="https://jirugutema.netlify.app" target="_blank" ><img  src="./assets/logo/jiren.jpg" class="gptProfile" alt="Jiren" /></a>
+            ${item.response}
+          </div>
+        `
+        )
+        .join("");
+      scrollToBottom();
+    } else {
+      historyDiv.innerHTML = "No history found.";
+    }
+  } catch (error) {
     historyDiv.innerHTML = "Error loading history.";
+    console.error(error);
   }
 }
 
-document
-  .getElementById("clearHistoryBtn")
-  .addEventListener("click", async () => {
-    const res = await fetch(
-      `https://jiren-intellij-backend.onrender.com/history?username=${username}`,
-      {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-
+// Clear history
+document.getElementById("clearHistoryBtn").addEventListener("click", async () => {
+  try {
+    const res = await fetch("http://localhost:5500/history", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  document.getElementById("welcomeDiv").style.display = "none";
     if (res.ok) {
-      loadHistory(username);
-      notification.style.display = "block";
-      notification.textContent = "History cleared!";
-      setTimeout(() => {
-        notification.style.display = "none";
-      }, 3000);
+  
+      loadHistory(decodeToken(token).username);
     } else {
       alert("Error clearing history.");
     }
-  });
+  } catch (error) {Account.style.display = "none";
+    alert("Error clearing history.");
+    console.error(error);
+  }
+});
