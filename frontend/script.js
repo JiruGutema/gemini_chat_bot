@@ -10,6 +10,7 @@ const usernameSpan = document.getElementById("usernameSpan");
 
 // Set username text
 usernameSpan.textContent = username;
+document.getElementById("Account").setAttribute("src", "./assets/logo/profile.png")
 
 Account.addEventListener("click", () => {
   if (welcomeDiv.style.display === "none" || welcomeDiv.style.display === "") {
@@ -103,7 +104,7 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
     document.getElementById("generateSection").style.display = "block";
     setTimeout(() => {
       loadHistory(username);
-    }, 2000);
+    }, 5000);
   } else {
     output.textContent = data.error;
     output.style.display = "block";
@@ -142,46 +143,57 @@ document.getElementById("generateBtn").addEventListener("click", async () => {
     }, 3000);
     return;
   }
-  // Create a pop-up notification
-  const notification = document.createElement("div");
-  notification.style.position = "fixed";
-  notification.style.bottom = "20px";
-  notification.style.right = "20px";
-  notification.style.padding = "10px 20px";
-  notification.style.backgroundColor = "#1E1E2F";
-  notification.style.color = "white";
-  notification.style.borderRadius = "5px";
-  notification.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
-  notification.style.zIndex = "1000";
-  notification.textContent = "Your request is being processed...";
-
-  document.body.appendChild(notification);
-
-  // Remove the notification after 3 seconds
-  setTimeout(() => {
-    notification.remove();
-  }, 3000);
 
   const username = localStorage.getItem("username");
   const historyDiv = document.getElementById("history");
-  historyDiv.scrollTop = historyDiv.scrollHeight; // Retrieve username from localStorage
+
+  // Add "Typing..." indicator
+  const typingIndicator = document.createElement("div");
+  typingIndicator.textContent = "Jiren is typing...";
+  typingIndicator.style.color = "#999";
+  typingIndicator.style.fontStyle = "italic";
+  historyDiv.appendChild(typingIndicator);
+  scrollToBottom();
+
+  // Clear input field
   const inputField = document.getElementById("prompt");
   inputField.value = "";
   inputField.placeholder = "Waiting...";
 
-  const res = await fetch(
-    "https://jiren-intellij-backend.onrender.com/generate",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt, username }), // Send username with request
-    }
-  );
-  setTimeout(() => {
-    loadHistory(username);
-  }, 1000);
-  inputField.placeholder = "Type something here...";
-  const data = await res.json();
+  try {
+    const res = await fetch(
+      "https://jiren-intellij-backend.onrender.com/generate",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt, username }),
+      }
+    );
+
+    const data = await res.json();
+
+    // Remove typing indicator
+    typingIndicator.remove();
+
+    // Add new response to history
+    const newResponse = document.createElement("div");
+    newResponse.innerHTML = `
+      <div class="prompt"><strong>You:</strong> ${prompt}</div>
+      <br />
+      <div class="response">
+        <img src="./assets/logo/jiren.jpg" class="gptProfile" alt="Jiren" />
+        ${data.response || "No response"}
+      </div>
+    `;
+    historyDiv.appendChild(newResponse);
+    scrollToBottom();
+  } catch (error) {
+    typingIndicator.remove();
+    alert("Error processing your request. Please try again.");
+    console.error(error);
+  } finally {
+    inputField.placeholder = "Type something here...";
+  }
 });
 
 async function loadHistory(username) {
@@ -226,9 +238,9 @@ async function loadHistory(username) {
       .map(
         (item) => `
   
-         <div class="prompt"> <strong>You</strong> ${item.prompt}</div>
+         <div class="prompt"> <strong style="font-size: 24px">${username}</strong> ${item.prompt}</div>
           <br />
-        <div class="response">  <strong>Jiren-Intelli</strong> ${item.response} </div>
+        <div class="response">  <img src="./assets/logo/jiren.jpg" class="gptProfile" alt="Jiren" ${item.response} </div>
         
       `
       )
