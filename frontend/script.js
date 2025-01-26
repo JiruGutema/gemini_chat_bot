@@ -104,7 +104,7 @@ document.getElementById("signupBtn").addEventListener("click", async () => {
 // Login functionality
 document.getElementById("loginBtn").addEventListener("click", async () => {
   const Account = document.getElementById("Account");
-  const username = document.getElementById("signupUsername").value;
+  const username = document.getElementById("signinUsername").value;
   const password = document.getElementById("password").value;
 
   const res = await fetch(`https://gemini-chat-bot-1-scae.onrender.com/login`, {
@@ -121,7 +121,7 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
 
     document.getElementById("authSection").style.display = "none";
     document.getElementById("generateSection").style.display = "block";
-    Account.style.display = "block";  
+    Account.style.display = "block";
 
     setTimeout(() => {
       loadHistory(username);
@@ -247,7 +247,7 @@ document.getElementById("clearHistoryBtn").addEventListener("click", async () =>
 
   document.getElementById("welcomeDiv").style.display = "none";
     if (res.ok) {
-  
+
       loadHistory(decodeToken(token).username);
     } else {
       alert("Error clearing history.");

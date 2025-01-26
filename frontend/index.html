@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    
+
 
     <div class="container" id="container">
       <div class="history" id="history">
@@ -41,37 +41,37 @@
         <h2>Welcome to Jiren-Intelli!</h2>
         <p>Please login or sign up to continue.</p>
       </div>
-    
+
       <div id="loginForm" class="auth-form">
         <label for="username">Username</label><br>
-        <input type="text" id="signupUsername" class="auth-input" placeholder="Enter your username" required /><br>
-    
+        <input type="text" id="signinUsername" class="auth-input" placeholder="Enter your username" required /><br>
+
         <label for="password">Password</label>
         <input type="password" id="password" class="auth-input" placeholder="Enter your password" required />
-    
+
         <div class="auth-buttons">
           <button id="loginBtn" class="auth-btn">Login</button>
         </div>
-    
+
         <div class="auth-redirect">
           <p>Don't have an account? <a href="javascript:void(0);" id="goToSignUp">Sign up here</a></p>
         </div>
       </div>
-    
+
       <div id="signupForm" class="auth-form" style="display: none;">
         <label for="email">Email</label> <br>
         <input type="email" id="signupEmail" class="auth-input" placeholder="Enter your email" required /><br>
-    
+
         <label for="username">Username</label><br>
         <input type="text" id="signupUsername" class="auth-input" placeholder="Enter your username" required /><br>
-    
+
         <label for="password">Password</label><br>
         <input type="password" id="signupPassword" class="auth-input" placeholder="Create a password" required /><br>
-    
+
         <div class="auth-buttons">
           <button id="signupBtn" class="auth-btn">Sign Up</button>
         </div>
-    
+
         <div class="auth-redirect">
           <p>Already have an account? <a href="javascript:void(0);" id="goToLogin">Login here</a></p>
         </div>
@@ -105,7 +105,7 @@
         document.getElementById('loginForm').style.display = 'none';
         document.getElementById('signupForm').style.display = 'block';
       });
-    
+
       document.getElementById('goToLogin').addEventListener('click', function() {
         document.getElementById('signupForm').style.display = 'none';
         document.getElementById('loginForm').style.display = 'block';
