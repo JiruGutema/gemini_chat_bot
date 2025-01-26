@@ -114,12 +114,12 @@ button:hover {
 }
 
 #loginBtn {
-  background-color: white;
+  background-color: rgb(18, 183, 212);
   color: white;
 }
 
 #signupBtn {
-  background-color: #2196f3;
+  background-color: #839baf;
   color: white;
 }
 
